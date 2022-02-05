@@ -1,6 +1,16 @@
 # React template
 
 React template with TypeScript, Storybook and Chakra UI
+
+This template includes some useful scripts to generate components, pages and page-components:
+
+```
+yarn component ComponentName
+yarn page PageName
+yarn page:component PageName PageComponentName
+```
+
+This scripts will create the files (the component itself and a Storybook file), add them to the index file and open the file.
 ## Data component
 
 A data component consist of two parts: the discrete component and the connected component. The purpose of splitting them apart is to make testing and development of the individual component easier.
