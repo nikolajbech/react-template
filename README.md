@@ -1,46 +1,31 @@
-# Getting Started with Create React App
+# React template
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React template with TypeScript, Storybook and Chakra UI
+## Data component
 
-## Available Scripts
+A data component consist of two parts: the discrete component and the connected component. The purpose of splitting them apart is to make testing and development of the individual component easier.
 
-In the project directory, you can run:
+### Discrete component
 
-### `npm start`
+Discrete components should have the following variants:
+* Skeleton (when data is loading)
+* Empty (when there is no data to present)
+* Error (when an error occurs)
+* Data rich components (when data is loaded)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Discrete components should not care about:
+* Fetching data
+* API calls
+* Side effects (all actions should be contained to the component itself)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+A good UX pattern is to present a loading indicator in the shape and size of the content that will be presented to the user when the data is loaded.
 
-### `npm test`
+All states of of the discrete component should be available in storybook.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Connected components
 
-### `npm run build`
+When a component needs to fetch data, the discrete components should be wrapped in a connected component. The responsibility for the connected component is to fetch the right data and present the right version of the component for the current state of the fetching.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Generic component
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+When a component can be used in more than one place it should be a generic component. It's similar to the discrete component, but it doesn't require a connected component.
